@@ -19,9 +19,13 @@ public class Cliente extends Persona{
     private List<Cliente> listaClientes;
     private char respuesta = '1';
     
-     public Cliente(Scanner input){
+    public Cliente(Scanner input){
         listaClientes = new ArrayList<>();
         this.input = input;
+        this.listaClientes.add(new Cliente("123456","Carlos Bayas","Guayaquil","0975661328","Empresarial"));
+        this.listaClientes.add(new Cliente("123457","Mateo Vega","Machala","0975661328","Personal"));
+        this.listaClientes.add(new Cliente("123458","Carla Gaona","Cuenca","0975661328","Empresarial"));
+        this.listaClientes.add(new Cliente("123459","Aianna Mata","Quito","0975661328","Personal"));
     }
 
     public Cliente(String codigo, String nombre, String direccion, String telefono,String tipoCliente) {
@@ -43,12 +47,12 @@ public class Cliente extends Persona{
         Scanner sc = new Scanner(System.in);
         
         String res = "";
-        String cod = "";
+        String cod = "1";
         
-        for(int i = 0; i < getCodigo().length(); i++){
+        /*for(int i = 0; i < getCodigo().length(); i++){
             int n = (int)(Math.random()*getCodigo().length());
             cod += getCodigo().charAt(n);
-        }
+        }*/
         
         System.out.println("!! Ingrese los datos del cliente !!");
         
@@ -70,7 +74,35 @@ public class Cliente extends Persona{
             
         }while(res.equals("S"));
         
-        sc.close();
+        //sc.close();
+    }
+    
+    public void menuCliente(){
+       
+        respuesta = '1';        
+        while(respuesta != '2'){
+            System.out.println(" ");
+            System.out.println("""
+                Menú Cliente:
+                1.Agregar Cliente
+                2.Regresar al menú principal
+                """);
+            System.out.print("Ingrese el número de la opción selecionada: ");
+            respuesta = input.nextLine().charAt(0);
+            switch(respuesta){
+                
+                case '1':
+                   agregarCliente();
+                    break;
+                 
+                case '2':
+                    return;
+                   
+                default :
+                    System.out.println("La opcion es incorrecta");
+
+            }
+        }
     }
 
 }

@@ -15,7 +15,10 @@ public abstract class Usuario {
     private String contraseña;
     private String nombre;
     private String nivel;
-
+    
+    public Usuario(){
+    }
+    
     public Usuario(String usuario, String contraseña, String nombre, String nivel) {
         this.usuario = usuario;
         this.contraseña = contraseña;

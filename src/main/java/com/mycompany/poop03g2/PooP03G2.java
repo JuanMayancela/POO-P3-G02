@@ -7,6 +7,7 @@ package com.mycompany.poop03g2;
 import java.util.Scanner;
 import java.util.ArrayList;
 import com.mycompany.poop03g2.data.*;
+import java.util.List;
 
 /**
  *
@@ -15,11 +16,31 @@ import com.mycompany.poop03g2.data.*;
 public class PooP03G2 {
     static Scanner input = new Scanner(System.in);
     public static ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-    public static char respuesta = '1';
+    private static char respuesta = '1';
+    
+    private static Admin adm;
+    private static Cobranza cobra;
+    private static Tecnico tec;
+    private static Cliente cli;
+    private static Proveedor pro1;
+        
+    
     
 
     public static void main(String[] args) {
+       
+        inicializarSistema();
         validarUsuario();
+    }
+    
+    public static void inicializarSistema(){
+        
+        adm = new Admin(input);
+        cobra = new Cobranza(input);
+        tec = new Tecnico(input);
+        cli = new Cliente(input);
+        pro1 = new Proveedor(input);
+        System.out.println(adm);
     }
     
     public static void validarUsuario(){
@@ -33,98 +54,107 @@ public class PooP03G2 {
         Usuario busqueda = new Admin(usua,contra,"","");
         if(listaUsuarios.contains(busqueda)){
             
-            //for(int i = 0; i<listaUsuarios.size(); i++){
-                int ind = listaUsuarios.indexOf(busqueda);
-                Usuario u = listaUsuarios.get(ind);
-                if(u instanceof Admin){
-                    while(respuesta != 4){
-                        
-                        System.out.println("""
-                               1.Administrar Clientes
-                               2.Administrar Proveedores
-                               3.Administrar Servicios
-                               4.Salir""");
-                        System.out.print("Ingrese el número de la opción seleccionada: ");
-                        respuesta = input.nextLine().charAt(0);
-                        switch(respuesta){
-                            case '1':
+            
+            int ind = listaUsuarios.indexOf(busqueda);
+            Usuario u = listaUsuarios.get(ind);
+            if(u instanceof Admin){
+                while(respuesta != 4){
+                    System.out.println(" ");
+                    System.out.println("""
+                            Menú Admin:
+                            1.Administrar Clientes
+                            2.Administrar Proveedores
+                            3.Administrar Servicios
+                            4.Salir""");
+                    System.out.print("Ingrese el número de la opción seleccionada: ");
+                    respuesta = input.nextLine().charAt(0);
+                    switch(respuesta){
+                        case '1':
+                            cli.menuCliente();
+                            break;
                                 
-                                break;
-                            case '2':
+                        case '2':
+                            pro1.menuProveedores();
+                            break;
                                 
-                                break;
+                        case '3':
                                 
-                            case '3':
+                            break;
                                 
-                                break;
+                        case '4':
+                            return;
                                 
-                            case '4':
-                                return;
-                                
-                            default :
-                                System.out.println("La opcion es incorrecta");
-                        }
+                        default :
+                            System.out.println("La opcion es incorrecta");
                     }
-                    
                 }
-                if(u instanceof Tecnico){
-                    while(respuesta != 3){
+                    
+            }
+            
+            if(u instanceof Tecnico){
+                while(respuesta != 3){
                         
-                        System.out.println("""
-                               1.Generar orden de servicios
-                               2.Reportar falta de insumos
-                               3.Salir""");
-                        System.out.print("Ingrese el número de la opción seleccionada: ");
-                        respuesta = input.nextLine().charAt(0);
-                        switch(respuesta){
-                            case '1':
+                    System.out.println(" ");
+                    System.out.println("""
+                            Menú Técnico:
+                            1.Generar orden de servicios
+                            2.Reportar falta de insumos
+                            3.Salir""");
+                    System.out.print("Ingrese el número de la opción seleccionada: ");
+                    respuesta = input.nextLine().charAt(0);
+                    switch(respuesta){
+                        case '1':
                                 
-                                break;
-                            case '2':
+                            break;
+                            
+                        case '2':
                                 
-                                break;
+                            break;
                                 
-                            case '3':
-                                return;
+                        case '3':
+                            return;
                                 
-                            default :
-                                System.out.println("La opcion es incorrecta");
-                        }
+                        default :
+                            System.out.println("La opcion es incorrecta");
                     }
-                    
                 }
-                if(u instanceof Cobranza){
-                    while(respuesta != 4){
+                    
+            }
+            
+            if(u instanceof Cobranza){
+                while(respuesta != 4){
                         
-                        System.out.println("""
-                               1.Generar facturas a empresas
-                               2.Reporte de ingresos por servicios
-                               3.Reporte de atenciones por técnico
-                               4.Salir""");
-                        System.out.print("Ingrese el número de la opción seleccionada: ");
-                        respuesta = input.nextLine().charAt(0);
-                        switch(respuesta){
-                            case '1':
+                    System.out.println(" ");
+                    System.out.println("""
+                            Menú Cobranza:
+                            1.Generar facturas a empresas
+                            2.Reporte de ingresos por servicios
+                            3.Reporte de atenciones por técnico
+                            4.Salir""");
+                    System.out.print("Ingrese el número de la opción seleccionada: ");
+                    respuesta = input.nextLine().charAt(0);
+                    switch(respuesta){
+                        case '1':
                                 
-                                break;
-                            case '2':
+                            break;
+                        case '2':
                                 
-                                break;
+                            break;
                                 
-                            case '3':
+                        case '3':
                                 
-                                break;
+                            break;
                                 
-                            case '4':
-                                return;
+                        case '4':
+                            return;
                                 
-                            default :
-                                System.out.println("La opcion es incorrecta");
-                        }
+                        default :
+                            System.out.println("La opcion es incorrecta");
                     }
-                    
                 }
-            //}
+                    
+            }
+            
         }
         else{
             System.out.println("!! Error: usuario o contraseña incorrectos !!");
