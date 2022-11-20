@@ -4,6 +4,8 @@
  */
 package com.mycompany.poop03g2.data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JuanMayancela 
@@ -13,6 +15,7 @@ public abstract class Persona {
     private String nombre;
     private String direccion;
     private String telefono;
+    private ArrayList<Persona> listaPersonas = new ArrayList<>();
     
     public Persona(){
     }
