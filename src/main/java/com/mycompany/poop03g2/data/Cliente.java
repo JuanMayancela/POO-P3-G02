@@ -19,6 +19,9 @@ public class Cliente extends Persona{
     private List<Cliente> listaClientes;
     private char respuesta = '1';
     
+    public Cliente(){
+    }
+    
     public Cliente(Scanner input){
         listaClientes = new ArrayList<>();
         this.input = input;
@@ -41,6 +44,12 @@ public class Cliente extends Persona{
     public void setTipoCliente(String tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
+
+    public List<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+    
+    
     
     public void agregarCliente(){
         
@@ -74,13 +83,21 @@ public class Cliente extends Persona{
             
         }while(res.equals("S"));
         
-        //sc.close();
+    }
+    
+    @Override
+    public String toString(){
+        return getCodigo()+","+getNombre()+","+getDireccion()+","+getTelefono()+","+tipoCliente;
     }
     
     public void menuCliente(){
-       
+        
         respuesta = '1';        
         while(respuesta != '2'){
+            
+            System.out.println(" ");
+            System.out.println("!! Información de los clientes !!");
+            System.out.println(listaClientes);
             System.out.println(" ");
             System.out.println("""
                 Menú Cliente:

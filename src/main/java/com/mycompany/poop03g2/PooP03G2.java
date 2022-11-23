@@ -7,7 +7,7 @@ package com.mycompany.poop03g2;
 import java.util.Scanner;
 import java.util.ArrayList;
 import com.mycompany.poop03g2.data.*;
-import java.util.List;
+
 
 /**
  *
@@ -23,6 +23,8 @@ public class PooP03G2 {
     private static Tecnico tec;
     private static Cliente cli;
     private static Proveedor pro1;
+    private static Servicio ser;
+    private static Orden ord;
         
     
     
@@ -40,6 +42,8 @@ public class PooP03G2 {
         tec = new Tecnico(input);
         cli = new Cliente(input);
         pro1 = new Proveedor(input);
+        ser = new Servicio(input);
+        ord = new Orden(input);
         System.out.println(adm);
     }
     
@@ -78,7 +82,7 @@ public class PooP03G2 {
                             break;
                                 
                         case '3':
-                                
+                            ser.menuServicios();    
                             break;
                                 
                         case '4':
@@ -104,11 +108,11 @@ public class PooP03G2 {
                     respuesta = input.nextLine().charAt(0);
                     switch(respuesta){
                         case '1':
-                                
+                            ord.generarOrden();   
                             break;
                             
                         case '2':
-                                
+                            tec.reportarStock();   
                             break;
                                 
                         case '3':
@@ -135,14 +139,15 @@ public class PooP03G2 {
                     respuesta = input.nextLine().charAt(0);
                     switch(respuesta){
                         case '1':
-                                
+                            cobra.generarFactura();
                             break;
+                            
                         case '2':
-                                
+                            cobra.reporteIngresos();
                             break;
                                 
                         case '3':
-                                
+                            cobra.reporteAtencionTecnico();
                             break;
                                 
                         case '4':

@@ -17,7 +17,7 @@ public class Cobranza extends Usuario{
     
     private Scanner input;
     private List<Cobranza> listaCobranzas;
-    private char respuesta = '1';
+    
     
     public Cobranza(Scanner input){
         listaCobranzas = new ArrayList<>();

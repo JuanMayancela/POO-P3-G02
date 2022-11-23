@@ -36,7 +36,7 @@ public class Proveedor extends Persona {
         Scanner sc = new Scanner(System.in); 
         
         String res = "";
-        String cod = "";
+        String cod = "1";
         StringBuilder sb = new StringBuilder();
         /*for(int i = 0; i < getCodigo().length(); i++){
             int n = (int)(Math.random()*getCodigo().length());
@@ -58,14 +58,22 @@ public class Proveedor extends Persona {
             res = sc.nextLine();
             System.out.println(" ");
             
-        }while(res.equals("S"));
-        
-        
+        }while(res.equals("S"));    
+    }
+    
+    @Override
+    public String toString(){
+        return getCodigo()+","+getNombre()+","+getDireccion()+","+getTelefono();
     }
     
     public void menuProveedores(){
+        
         respuesta = '1';        
         while(respuesta != '2'){
+            
+            System.out.println(" ");
+            System.out.println("!! Información de los Proveedores !!");
+            System.out.println(listaProveedores);
             System.out.println(" ");
             System.out.println("""
                 Menú Proveedor:

@@ -17,7 +17,7 @@ public class Admin extends Usuario {
     
     private Scanner input;
     private List<Admin> listaAdmins;
-    private char respuesta = '1';
+   
     
     public Admin(Scanner input){
         listaAdmins = new ArrayList<>();
