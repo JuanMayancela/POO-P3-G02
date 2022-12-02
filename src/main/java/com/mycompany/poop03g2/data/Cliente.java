@@ -16,11 +16,11 @@ public class Cliente extends Persona{
     private String tipoCliente;
     
     private Scanner input;
-    private List<Cliente> listaClientes;
+    protected static List<Cliente> listaClientes;
     private char respuesta = '1';
     
-    public Cliente(){
-    }
+    
+    
     
     public Cliente(Scanner input){
         listaClientes = new ArrayList<>();
@@ -45,7 +45,7 @@ public class Cliente extends Persona{
         this.tipoCliente = tipoCliente;
     }
 
-    public List<Cliente> getListaClientes() {
+    public static List<Cliente> getListaClientes() {
         return listaClientes;
     }
     
@@ -90,6 +90,8 @@ public class Cliente extends Persona{
         return getCodigo()+","+getNombre()+","+getDireccion()+","+getTelefono()+","+tipoCliente;
     }
     
+
+    
     public void menuCliente(){
         
         respuesta = '1';        
@@ -121,5 +123,16 @@ public class Cliente extends Persona{
             }
         }
     }
-
+    @Override
+    public boolean equals(Object obj){
+        if(obj==this){
+            return true;
+        }
+        if(obj != null && obj instanceof Cliente){
+            Cliente other = (Cliente)obj;
+            String cod1= getCodigo();
+            return cod1.equals(other.getCodigo());
+        }
+        return false;
+    }
 }

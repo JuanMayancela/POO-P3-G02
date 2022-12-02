@@ -42,7 +42,10 @@ public class Servicio {
 	this.nombre=nombre;
 	this.precio=precio;
     }
-  
+    
+    public static List<Servicio> getListaServicios(){
+        return listaServicios;
+    }
             
     public String getCodigo(){
         return codigo;
