@@ -4,51 +4,86 @@
  */
 package com.mycompany.poop03g2.data;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Date;
+
 
 /**
  *
  * @author Diego Contreras
  */
 public class Orden {
-    private String cliente;
+    private Cliente cliente;
     private String fechaServicio;
     private String tipoVehiculo;
     private String placaVehiculo;
+    private int cantidad;
     private ArrayList<Servicio> listaSer;
     private Scanner input;
-    private List<Orden> listaOrdenes;
-    
+    protected static List<Orden> listaOrdenes;
     ArrayList<Servicio> servRealizados = new ArrayList<>();
+    private static Tecnico Tecnico;
+    
     public Orden(Scanner input){
         listaOrdenes = new ArrayList<>();
         this.input = input;
-       
-        this.listaOrdenes.add(new Orden("123456","19/11/2022","automóvil","GST-0984",servRealizados));
-        this.listaOrdenes.add(new Orden("123457","Balanceo","bus","GNW-087",servRealizados));
-        this.listaOrdenes.add(new Orden("123458","Frenos","motocicleta","PQR-988",servRealizados));
-        this.listaOrdenes.add(new Orden("123459","Cambio Aceite","automóvil","OBB-444",servRealizados));
-
+        Cliente C1 = new Cliente("123456","Carlos Bayas","Guayaquil","0975661328","Empresarial");
+        Cliente C2 = new Cliente("123457","Mateo Vega","Machala","0975661328","Personal");
+        Cliente C3 = new Cliente("123458","Carla Gaona","Cuenca","0975661328","Empresarial");
+        Cliente C4 = new Cliente("123459","Aianna Mata","Quito","0975661328","Personal");       
+        // CREA UNA LISTA DE SERVICIOS INDEPENDIENTE A CADA UNA DE LAS ORDENES
         
+        ArrayList<Servicio> LS1= new ArrayList<>();
+        ArrayList<Servicio> LS2= new ArrayList<>();
+        ArrayList<Servicio> LS3= new ArrayList<>();
+        ArrayList<Servicio> LS4= new ArrayList<>();
+        Servicio S1 = new Servicio("ali001","Alineación",17.5);
+        Servicio S2 = new Servicio("bal002","Balanceo",12.0);
+        Servicio S3 = new Servicio("fre003","Frenos",20.0);
+        Servicio S4 = new Servicio("cAc004","Cambio Aceite",35.0);
+        Servicio S5 = new Servicio("cFi005","Cambio Filtro",20.0);
+        Servicio S6 = new Servicio("enl006","Enllantaje",25.0);
+        LS1.add(S1);
+        LS1.add(S4);
+        LS2.add(S2);
+        LS2.add(S5);
+        LS3.add(S6);
+        LS4.add(S3);
+        LS4.add(S1);
+        Tecnico Tec1= new Tecnico("alopez","al123456","Alvaro Lopez","tecnico");
+        Tecnico Tec2 = new Tecnico("mbarcos","mb123456","Mario Barcods","tecnico");
+        
+        this.listaOrdenes.add(new Orden(C1,"19/11/2022","automóvil","GST-0984",LS1,Tec1));
+        this.listaOrdenes.add(new Orden(C2,"20/06/2022","bus","GNW-087",LS2,Tec1));
+        this.listaOrdenes.add(new Orden(C3,"29/11/2022","motocicleta","PQR-988",LS3,Tec1));
+        this.listaOrdenes.add(new Orden(C4,"15/11/2022","automóvil","OBB-444",LS4,Tec2));     
     }
         
   
-    public Orden(String cliente, String fechaServicio, String tipoVehiculo, String placaVehiculo,ArrayList<Servicio> listaSer){
+    public Orden(Cliente cliente, String fechaServicio, String tipoVehiculo, String placaVehiculo,ArrayList<Servicio> listaSer,Tecnico Tecnico){
         this.cliente=cliente;
         this.fechaServicio=fechaServicio;
         this.tipoVehiculo=tipoVehiculo;
         this.placaVehiculo=placaVehiculo;
         this.listaSer = listaSer;
+        this.Tecnico = Tecnico;
     }
     
-    public String getCliente() {
+    public static List<Orden> getListaOrdenes() {
+        return listaOrdenes;
+    }
+    
+    public static Tecnico getTecnico(){
+        return Tecnico;
+    }
+    
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(String cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -76,6 +111,12 @@ public class Orden {
         this.placaVehiculo = placaVehiculo;
     }
     
+    public ArrayList<Servicio> getListaSer(){
+        return listaSer;
+    }
+    
+    
+    
     @Override
     public String toString(){
         return "Cliente: "+cliente+", Fecha: "+fechaServicio+", Vehiculo: "+tipoVehiculo+", Placa: "+placaVehiculo+", Servicios:"+listaSer;
@@ -87,11 +128,17 @@ public class Orden {
         String res = "";
         String codSer = "";
         double valorTotal = 0.0;
-        Orden orden = new Orden("","","","",servRealizados);
-       
+        //Cambiar String a cliente
+
         System.out.println(" ");
         System.out.println("Ingrese el codigo del cliente: ");
         String codCli= sc.nextLine();
+        
+        Cliente c1= new Cliente(codCli,"","","","");
+        Tecnico Tect= new Tecnico("","","","");
+        Orden orden = new Orden(c1,"","","",servRealizados,Tect);  
+        
+        
         System.out.println("Ingrese la fecha del Servicio(DD/MM/YYYY): ");
         String fechaServ= sc.nextLine();
         System.out.println("Ingrese el tipo de Vehiculo: ");
@@ -110,7 +157,8 @@ public class Orden {
                 servRealizados.add(editServ);
                 double precioServ = editServ.getPrecio()*cantidad;
                 valorTotal += precioServ;
-                orden= new Orden(codCli,fechaServ,tipoVehi,placaVehi,servRealizados);
+                Tecnico Tec1= getTecnico();
+                orden= new Orden(c1,fechaServ,tipoVehi,placaVehi,servRealizados,Tec1);
                 listaOrdenes.add(orden);
             }
             else{
@@ -118,13 +166,25 @@ public class Orden {
                     System.out.println("!! Su Orden fue registrada !!"); 
                 }
                 else{
-                    System.out.println("!! No se econtro el servicio !!");
+                    System.out.println("!! No se encontro el servicio !!");
                 }
             }
         }
             
-        
-        System.out.println(orden+", Valor a pagar: "+valorTotal);
+        System.out.println(orden +", Valor a pagar: "+valorTotal);
         return orden;
     }
+    @Override
+        public boolean equals(Object obj){
+        if(obj==this){
+            return true;
+        }
+        if(obj != null && obj instanceof Orden){
+            Orden other = (Orden)obj;
+            Cliente C1= getCliente();
+            return C1.equals(other.getCliente());
+        }
+        return false;
+}
+        
 }

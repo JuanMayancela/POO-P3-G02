@@ -20,18 +20,18 @@ public class Tecnico extends Usuario {
     private int stock;
     private String implemento;
     private Scanner input;
-    private List<Tecnico> listaTecnicos;
+    protected static List<Tecnico> listaTecnicos;
     private List<Tecnico> listaImplementos;
     private final String email = "responsableInsumos@gmail.com";
     
     
     public Tecnico(Scanner input){
         listaTecnicos = new ArrayList<>();
-        listaImplementos = new ArrayList<>();
         this.input = input;
         this.listaTecnicos.add(new Tecnico("alopez","al123456","Alvaro Lopez","tecnico"));
         this.listaTecnicos.add(new Tecnico("mbarcos","mb123456","Mario Barcods","tecnico"));
         PooP03G2.listaUsuarios.addAll(listaTecnicos);
+        listaImplementos = new ArrayList<>();
     }
 
     public Tecnico(String usuario, String contraseña, String nombre, String nivel) {
@@ -44,6 +44,11 @@ public class Tecnico extends Usuario {
         this.stock = stock;
         
     }
+    
+       public static List<Tecnico> getListaTecnicos() {
+        return listaTecnicos;
+    }
+    
     
     @Override
     public String toString(){
