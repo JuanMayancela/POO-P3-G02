@@ -44,7 +44,7 @@ public class PooP03G2 {
         pro1 = new Proveedor(input);
         ser = new Servicio(input);
         ord = new Orden(input);
-        System.out.println(adm);
+        
     }
     
     public static void validarUsuario(){
@@ -86,6 +86,7 @@ public class PooP03G2 {
                             break;
                                 
                         case '4':
+                            System.out.println("!! SESIÓN TERMINADA !!");
                             return;
                                 
                         default :
@@ -116,6 +117,7 @@ public class PooP03G2 {
                             break;
                                 
                         case '3':
+                            System.out.println("!! SESIÓN TERMINADA !!");
                             return;
                                 
                         default :
@@ -151,6 +153,7 @@ public class PooP03G2 {
                             break;
                                 
                         case '4':
+                            System.out.println("!! SESIÓN TERMINADA !!");
                             return;
                                 
                         default :

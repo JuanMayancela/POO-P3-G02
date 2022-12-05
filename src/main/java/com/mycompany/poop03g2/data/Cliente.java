@@ -56,12 +56,15 @@ public class Cliente extends Persona{
         Scanner sc = new Scanner(System.in);
         
         String res = "";
-        String cod = "1";
-        
-        /*for(int i = 0; i < getCodigo().length(); i++){
-            int n = (int)(Math.random()*getCodigo().length());
-            cod += getCodigo().charAt(n);
-        }*/
+        String cd = "";
+        int ultiCli = listaClientes.size()-1;
+        String cod = listaClientes.get(ultiCli).getCodigo();
+        for(int i = 0; i < cod.length(); i++){
+            
+            int n = (int)(Math.random()*cod.length());
+            cd += cod.charAt(n);
+        }
+        cod =cd;
         
         System.out.println("!! Ingrese los datos del cliente !!");
         

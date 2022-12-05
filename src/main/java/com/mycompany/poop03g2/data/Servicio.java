@@ -74,32 +74,34 @@ public class Servicio {
     public void agregarServicio(){
 	Scanner sc = new Scanner(System.in);
 	String res = " ";
-        String cod = "1";
+        
+        String cd = "";
+        int ultiSer = listaServicios.size()-1;
+        String cod = listaServicios.get(ultiSer).getCodigo();
+        for(int i = 0; i < cod.length(); i++){
+            int n = (int)(Math.random()*cod.length());
+            cd += cod.charAt(n);
+        }
+        cod =cd;
 
-	while(res.equals("S")){
+	do{
             System.out.println("Ingrese el nombre del Servicio: ");
             String nombreS= sc.nextLine();
             System.out.println("Ingrese el precio del Servicio: ");
             double precioS= sc.nextDouble();
             sc.nextLine();
-            
-            /*for(int i = 0; i < getCodigo().length(); i++){
-                int n = (int)(Math.random()*getCodigo().length());
-                codigo += getCodigo().charAt(n);
-            }*/
-            
             Servicio Serv= new Servicio(cod,nombreS,precioS);
             listaServicios.add(Serv);
             System.out.println("Desea ingresar otro Servicio(S/N): ");
             res= sc.nextLine();
-        }
+        }while(res.equals("S"));
     }
 
         
     public void editarServicio(){
         Scanner sc= new Scanner(System.in);
         String res = "";
-        while(res.equals("S")){
+        do{
             System.out.println("Ingrese el codigo del servicio: ");
             String cod= sc.nextLine();
             Servicio busqueda= new Servicio(cod,"",0.0);
@@ -117,7 +119,7 @@ public class Servicio {
             else{
                 System.out.println("!! Servicio no encontrado !!");
             }
-        }
+        }while(res.equals("S"));
     }
     
     @Override
